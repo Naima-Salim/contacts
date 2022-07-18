@@ -35,7 +35,7 @@ RecyclerView.Adapter<ContactsViewHolder>(){
             .placeholder(R.drawable.ic_baseline_person_24)
             .resize(50,70)
             .centerCrop()
-            .networkPolicy(NetworkPolicy.OFFLINE)
+//            .networkPolicy(NetworkPolicy.OFFLINE)
             .into(holder.binding.ivContact)
         val context=holder.itemView.context
         holder.binding.ivContact.setOnClickListener {
@@ -43,8 +43,15 @@ RecyclerView.Adapter<ContactsViewHolder>(){
         }
         holder.binding.cvContact.setOnClickListener {
             val intent=Intent(context, ViewContactActivity::class.java)
-            intent.putExtra("NAME",currentContacts.name)
-            intent.putExtra("EMAIL", currentContacts.email)
+            intent.putExtra("Name",currentContacts.name)
+            intent.putExtra("Email", currentContacts.email)
+            intent.putExtra("PHONE_NUMBER", currentContacts.phoneNumber)
+            intent.putExtra("Address", currentContacts.address)
+            intent.putExtra("Image", currentContacts.image)
+
+
+
+
             context.startActivity(intent)
         }
     }

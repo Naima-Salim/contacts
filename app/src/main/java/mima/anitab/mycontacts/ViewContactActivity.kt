@@ -13,26 +13,29 @@ class ViewContactActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding= ActivityViewContactBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        getExtras()
-        getClicklisteners()
+        getExtra()
     }
-    fun getClicklisteners(){
-        binding.ivBack.setOnClickListener {
-            startActivity(Intent(this,MainActivity::class.java))
-        }
-    }
-    fun getExtras(){
+
+    fun getExtra(){
         val extras=intent.extras
-        binding.tvName2.text=extras?.getString("NAME","")
-        binding.tvEmail2.text=extras?.getString("EMAIL","")
-        binding.tvAddress2.text=extras?.getString("ADDRESS","")
-        binding.tvNumber.text=extras?.getString("NUMBER","")
-        val image=extras?.getString("IMAGE","")
-                Picasso.get().load(image)
-            .placeholder(R.drawable.ic_baseline_person_24)
-            .resize(300,300)
-            .centerCrop()
-            .into(binding.ivProfile)
+        var name=intent.extras?.getString("Name","")
+        var phone=intent.extras?.getString("PHONE_NUMBER","")
+        var email=intent.extras?.getString("Email","")
+        var address=intent.extras?.getString("Address","")
+        var imageView=binding.ivProfile
+
+        Toast.makeText(this,name,Toast.LENGTH_LONG).show()
+        Toast.makeText(this,phone,Toast.LENGTH_LONG).show()
+        binding.tvName2.text=name
+        binding.tvNumber.text=phone
+        binding.tvEmail2.text=email
+        binding.tvAddress2.text=address
+        Picasso.get().load(intent.getStringExtra("Image")).into(imageView)
 
     }
 }
+
+
+
+
+
